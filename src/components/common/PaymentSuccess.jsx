@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Confetti from "react-confetti";
 import axios from "axios";
 import { backendUrl } from "../../utils/BackendURL";
 import "./modal.css";
+import { ProductContext } from "../../contexts/product";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
+  const { fetchProduct } = useContext(ProductContext);
   const [message, setMessage] = useState("Processing payment...");
   const [loading, setLoading] = useState(true);
   const [celebrate, setCelebrate] = useState(false);
@@ -23,6 +25,7 @@ const PaymentSuccess = () => {
         );
 
         if (response.data.status) {
+          fetchProduct()
           setMessage("Payment successful! Your order has been placed.");
           setCelebrate(true);
         } else {

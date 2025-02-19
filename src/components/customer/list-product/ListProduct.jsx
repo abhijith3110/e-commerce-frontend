@@ -16,11 +16,11 @@ import axios from "axios";
 import { CartContext } from "../../../contexts/cart";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
 const ListProduct = () => {
   const { product: products, error, loading } = useContext(ProductContext);
-  const { fetchCart, cart } = useContext(CartContext);
+  const { fetchCart, carts } = useContext(CartContext);
 
   const addToCart = async (product) => {
     try {
@@ -122,34 +122,28 @@ const ListProduct = () => {
               <CardActions
                 sx={{ justifyContent: "center", borderTop: "1px solid #eee" }}
               >
-
-
-
-{Array.isArray(cart) && cart.some((cartItem) => cartItem.product._id === product._id) ? (
-  <IconButton
-    aria-label="remove from cart"
-    sx={{ color: "error.main" }}
-    onClick={() => deleteFromCart(product._id)}
-    disabled={product.stock === 0}
-  >
-    <RemoveShoppingCartIcon />
-  </IconButton>
-) : (
-  <IconButton
-    aria-label="add to cart"
-    sx={{ color: "success.main" }}
-    onClick={() => addToCart(product._id)}
-    disabled={product.stock === 0}
-  >
-    <AddShoppingCartIcon />
-  </IconButton>
-)}
-
-
-
-
-
-
+                {Array.isArray(carts) &&
+                carts.some(
+                  (cartItem) => cartItem.product._id === product._id
+                ) ? (
+                  <IconButton
+                    aria-label="remove from cart"
+                    sx={{ color: "error.main" }}
+                    onClick={() => deleteFromCart(product._id)}
+                    disabled={product.stock === 0}
+                  >
+                    <RemoveShoppingCartIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    aria-label="add to cart"
+                    sx={{ color: "success.main" }}
+                    onClick={() => addToCart(product._id)}
+                    disabled={product.stock === 0}
+                  >
+                    <AddShoppingCartIcon />
+                  </IconButton>
+                )}
               </CardActions>
             </Card>
           </Grid>
