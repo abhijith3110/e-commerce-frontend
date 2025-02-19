@@ -1,0 +1,56 @@
+.delete-product-modal {
+  background: #fff;
+  padding: 25px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.delete-product-modal h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.delete-product-modal p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.delete-product-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-cancel-btn,
+.delete-btn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-cancel-btn {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.delete-cancel-btn:hover {
+  background: #ddd;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}

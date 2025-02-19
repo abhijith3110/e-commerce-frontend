@@ -1,0 +1,94 @@
+.admin-header {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 20px 15px;
+  background: #ddd;
+}
+
+.admin-header p {
+  font-weight: 700;
+  font-size: x-large;
+  margin: 0;
+}
+
+.adminheader {
+  background: #ddd;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+.admin-dashboard-add button {
+  border: none;
+  padding: 8px 12px;
+  background: #000;
+  color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.admin-dashboard-add {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.admin-dashboard-add p {
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.openAddProduct {
+  position: absolute;
+  z-index: 20000;
+  top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translate(50%, 50%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.openDeleteProduct {
+  position: absolute;
+  z-index: 20000;
+  top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translate(50%, 50%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.openAddProduct.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.openAddProduct.hide {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.openDeleteProduct.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.openDeleteProduct.hide {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
