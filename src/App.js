@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./components/customer/Dashboard";
+import Dashboard from "./components/customer/dashboard/Dashboard";
 import AdminDashboard from "./components/admin/dashboard/AdminDashboard";
 import { ProductProvider } from "./contexts/product";
 import { ToastContainer } from "react-toastify";

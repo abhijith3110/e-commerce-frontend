@@ -1,0 +1,37 @@
+.customer-header{
+background: #ccc;
+padding: 20px 0px;
+}
+
+.customer-header-container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customer-header-content{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.customer-header-container h1{
+    margin: 0;
+}
+
+.all-product-container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.all-product-heading h1{
+    font-size: 40px;
+}
+
+.all-product-heading{
+    text-align: center;
+}
