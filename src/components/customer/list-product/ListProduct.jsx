@@ -11,10 +11,36 @@ import {
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { ProductContext } from "../../../contexts/product";
-import { imageUrl } from "../../../utils/BackendURL";
+import { backendUrl, imageUrl } from "../../../utils/BackendURL";
+import axios from "axios";
+import { CartContext } from "../../../contexts/cart";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 const ListProduct = () => {
   const { product: products, error, loading } = useContext(ProductContext);
+  const { fetchCart, cart } = useContext(CartContext);
+
+  const addToCart = async (product) => {
+    try {
+      await axios.post(`${backendUrl}/cart`, { product });
+      fetchCart();
+      toast.success("Product Added to Cart!");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
+
+  const deleteFromCart = async (product) => {
+    try {
+      await axios.delete(`${backendUrl}/cart/${product}`);
+      fetchCart();
+      toast.success("Product Removed from Cart!");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -83,12 +109,12 @@ const ListProduct = () => {
                         product.stock < 10 ? "error.main" : "text.secondary",
                     }}
                   >
-                    {product.stock < 10 ? "Low stock Only " : " "}
-                    {product.stock} units are Avaiable
+                    {product.stock < 10 ? "Low stock Only " : " "}{" "}
+                    {product.stock} units available
                   </Typography>
                 ) : (
                   <Typography variant="body2" color="text.secondary">
-                    Out of Stock 0 unit Avaiable
+                    Out of Stock (0 units available)
                   </Typography>
                 )}
               </CardContent>
@@ -96,14 +122,34 @@ const ListProduct = () => {
               <CardActions
                 sx={{ justifyContent: "center", borderTop: "1px solid #eee" }}
               >
-                <div>
-                  <IconButton
-                    aria-label="add to favorites"
-                    sx={{ color: "error.main" }}
-                  >
-                    <AddShoppingCartIcon />
-                  </IconButton>
-                </div>
+
+
+
+{Array.isArray(cart) && cart.some((cartItem) => cartItem.product._id === product._id) ? (
+  <IconButton
+    aria-label="remove from cart"
+    sx={{ color: "error.main" }}
+    onClick={() => deleteFromCart(product._id)}
+    disabled={product.stock === 0}
+  >
+    <RemoveShoppingCartIcon />
+  </IconButton>
+) : (
+  <IconButton
+    aria-label="add to cart"
+    sx={{ color: "success.main" }}
+    onClick={() => addToCart(product._id)}
+    disabled={product.stock === 0}
+  >
+    <AddShoppingCartIcon />
+  </IconButton>
+)}
+
+
+
+
+
+
               </CardActions>
             </Card>
           </Grid>
